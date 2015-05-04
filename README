@@ -37,3 +37,5 @@ Combined with a Base64 codec and a better primality test (such as
 Agrawal, Kayal and Saxena's algorithm) this could be made to work
 with professional RSA implementations, such as that used by
 OpenSSH's connection negotiation and others.
+
+Written by Randy Sorensen in Spring of 2015.
