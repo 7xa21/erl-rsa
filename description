@@ -1,0 +1,39 @@
+A short and sweet implementation of RSA in 64 lines of Erlang
+(as counted by the "cloc" utility, which excludes blank lines
+and comments).
+
+After getting acquainted with Erlang in a programming languages
+course and learning how RSA encryption works in an algorithms
+course, I wanted to see how difficult it would be to combine the
+two simply as a fun exercise.
+
+The program features concurrency, as it must generate two very
+large prime numbers; it does so in two separate threads.
+
+As it uses modular arithmetic to check for primality, there is a
+(very small) chance that it will instead generate a pseudo-prime
+number instead of a prime number. This underscores the fact that
+this is a "for fun" implementation, not meant for in-the-wild
+security of any sort.
+
+The particular primality test implemented is known as "Lagrange's
+Little Theorem".
+
+Compiling:
+
+	$ erl -compile rsa
+
+The erlang shell will produce two warnings about exporting 
+
+Running:
+
+	$ erl -noshell -s rsa main -s init stop
+
+The program will ask for a string message to be entered; the
+message will be encrypted, decrypted and then printed on the
+console. It will then exit.
+
+Combined with a Base64 codec and a better primality test (such as
+Agrawal, Kayal and Saxena's algorithm) this could be made to work
+with professional RSA implementations, such as that used by
+OpenSSH's connection negotiation and others.
